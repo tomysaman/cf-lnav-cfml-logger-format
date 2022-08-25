@@ -1,0 +1,36 @@
+{
+	"$schema": "https://lnav.org/schemas/format-v1.schema.json",
+	"cflog" : {
+		"title" : "ColdFusion Log Format",
+		"description" : "Log format used in ColdFusion and Lucee",
+		"url" : "",
+		"regex" : {
+			"cflog" : {
+				"pattern" : "^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\"]+)\"$"
+			}
+		},
+		"level-field" : "severity",
+		"level" : {
+			"info"		: "INFO",
+			"error" 	: "ERROR",
+			"warning" 	: "WARN",
+			"debug" 	: "DEBUG",
+			"fatal" 	: "FATAL",
+			"info"  	: "UNKNOWN"
+		},
+		"value" : {
+			"severity"		: { "kind" : "string", "identifier" : true },
+			"thread_id"		: { "kind" : "string", "identifier" : true },
+			"application"	: { "kind" : "string", "identifier" : true },
+			"body"		: { "kind" : "string" }
+		},
+		"timestamp-format" : [
+			"%m/%d/%Y\",\"%H:%M:%S"
+		],
+		"sample" : [
+			{
+				"line" : "\"INFO\",\"XNIO-1 task-2\",\"05/18/2022\",\"09:48:55\",\"lucee.runtime.CFMLFactoryImpl\",\"Reset 6 Unused PageContexts\""
+			}
+		]
+	}
+}
