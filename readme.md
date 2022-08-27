@@ -36,11 +36,11 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 
 # How to write your own CF log format file
 
-If you want to write you own log format file, see [lnav log formats docs](https://docs.lnav.org/en/latest/formats.html). Below is just a brief explanation on how the one in this repo is written.
+If you want to write you own log format file, see [lnav log formats docs](https://docs.lnav.org/en/latest/formats.html). Below is a brief explanation on how the one in this repo is written.
 
-### json and escaping characters
+### Crafting the regexp pattern
 
-The regexp pattern in the format definition file might look massive, but it is due to we need to escape all the double quotes from CF log files and the regexp character classes (such as `\d`) within json.
+The regexp pattern in the format definition file might look massive, but it is mostly due to we need to escape all the double quotes from CF log files and the regexp character classes (such as `\d`) within json. Below is an explanation on how the one in this repo is constructed.
 
 A CF log line can be something likes:
 > `"INFO","XNIO-1 task-2","05/18/2022","09:48:55","lucee.runtime.CFMLFactoryImpl","Reset 6 Unused PageContexts"`
@@ -70,7 +70,7 @@ And to use that pattern string in a json file you need to escape double quotes a
 
 Note: for the `?<timestamp>` field, the matched value contains date & time value in the format likes `dd/mm/yyyy","hh:mm:ss` (notice the double quotes and comma between the date & time value), so in the `timestamp-format` item (see the section "Items" below) we can tell lnav how to properly parse the date and time out of this string as `%m/%d/%Y\",\"%H:%M:%S`
 
-### Items
+### Other items
 
 - `level-field`
   - This defines the column name from your regexp pattern that lnav will use to determine the alert level value (i.e. Info, Warning, Error, Fatal etc).
