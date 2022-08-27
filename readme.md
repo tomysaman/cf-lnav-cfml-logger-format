@@ -34,7 +34,7 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 - Change theme (default themes are: default, eldar, grayscale, monocai, night-owl, solarized-dark, and solarized-light)
   - `:config /ui/theme/ <theme_name>`
 
-# How to write your own CF log format file
+# Writing a lnav CF log format file
 
 If you want to write you own log format file, see [lnav log formats docs](https://docs.lnav.org/en/latest/formats.html). Below is a brief explanation on how the one in this repo is written.
 
