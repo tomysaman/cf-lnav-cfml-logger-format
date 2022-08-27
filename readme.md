@@ -48,7 +48,7 @@ A CF log line can be something likes:
 So the regexp to parse a CF log line would be likes:
 > `^"([A-Z]+)","([^\"]+)","(\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","([^\"]+)","([^\"]+)"$`
 
-The regexp will give us 5 groups
+The regexp will give us 5 groups, from the line example above they are:
 1. INFO
 2. XNIO-1 task-2
 3. 05/18/2022","09:48:55
