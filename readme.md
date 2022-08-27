@@ -56,11 +56,11 @@ The regexp will give us 5 groups
 5. Reset 6 Unused PageContexts
 
 Now we can add our lnav fields into the regexp pattern. The lnav fields are written as `?<field>` and will be placed before the group regexp. The fields we used for the 5 groups matched by regexp are:
-1. `?<severity>`
-2. `?<thread_id>`
-3. `?<timestamp>`
-4. `?<application>`
-5. `?<body>`
+1. `?<severity>` - Our custom field name for `level`, if you use a custom name then you must define it in the `level-field` item (see the section "Items" below)
+2. `?<thread_id>` - Our custom field name
+3. `?<timestamp>` - This is the field lnav used to parse date & time, you must use this name exactly
+4. `?<application>` - Our custom field name
+5. `?<body>` - Our custom field name (most formats use `body`, so we keep it this way)
 
 So the final regexp pattern for lnav will be:
 > `^"(?<severity>[A-Z]+)","(?<thread_id>[^"]+)","(?<timestamp>\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","(?<application>[^"]+)","(?<body>[^"]+)"$`
@@ -85,10 +85,10 @@ Note: for the `?<timestamp>` field, the matched value contains date & time value
 
 ### See what other format files are written
 
-- (https://github.com/hagfelsh/lnav_formats.git)
-- (https://github.com/PaulWay/lnav-formats.git)
-- (https://github.com/penntaylor/lnav-ruby-logger-format.git)
-- (https://github.com/aspiers/lnav-formats.gi)
+- https://github.com/hagfelsh/lnav_formats.git
+- https://github.com/PaulWay/lnav-formats.git
+- https://github.com/penntaylor/lnav-ruby-logger-format.git
+- https://github.com/aspiers/lnav-formats.gi
 
 # ToDo
 
