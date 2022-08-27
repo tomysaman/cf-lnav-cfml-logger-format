@@ -5,7 +5,7 @@
 To use, download the `cflog.json` definition file from the `lnav-format` folder then install it with lnav with the following command:
 > `lnav -i cflog.json`
 
-# lnav Documentations
+# lnav
 
 [lnav documentation](https://docs.lnav.org/en/latest/intro.html)
 
