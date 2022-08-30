@@ -14,6 +14,7 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 - `lnav /path/to/log/folder` to view all log files in a folder, or `lnav /path/to/log/file.log` to view a single log file
 - Basic log content navigation: `Left`/`Right`, `PgUp`/`PgDn`, `Home`/`End`
 - Note: for some hotkeys, use it with `shift` to do the opposite function (e.g. `f` to jump to the next file and `shift + f` to jump to previous file)
+- `ctrl + w` to toggle word-wrap
 - `p` to show log line parsing result (display the log line into items so they are easier to read)
 - `shift` + `p` to format the log content for better display or printing (for example if you have json or xml in log, it will format them with proper indention)
 - Navigate through log base on time period: `1`=10 mins, `2`=20 mins, .., `6`=60 mins, `d`=24hrs
