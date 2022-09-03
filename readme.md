@@ -23,8 +23,8 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 - `/` to start searching with regexp, then use `n` to go through search result line
 - `:` to trigger command mode
   - `:filter-in` and `:filter-out` to filter the log content
-  - `:comment` to comment on a line, `clear-comment` to remove
-  - `:tag` to tag a line, `un-tag` to remove, `delete-tags` to remove tag(s)
+  - `:comment` to comment on a line, `:clear-comment` to remove
+  - `:tag` to tag a line, `:un-tag` to remove, `:delete-tags` to remove tag(s)
   - `:save-session` to save the current stage/config to a named session, and use `:load-session` to load and apply it
 - lnav will use a session to remember your commands such filter-in/out and markers. You can use `ctrl + r` to reset the session
 - `;` to run SQL query on the log data. Do a `select * from cflog` to see what column names we can use for query, some of them are:
