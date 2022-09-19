@@ -37,7 +37,7 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 
 # Writing a lnav CF log format file
 
-If you want to write you own log format file, see [lnav log formats docs](https://docs.lnav.org/en/latest/formats.html). Below is a brief explanation on how the one in this repo is written.
+If you want to write your own log format file, see [lnav log formats docs](https://docs.lnav.org/en/latest/formats.html). Below is a brief explanation on how the one in this repo is written.
 
 ### Crafting the regexp pattern
 
@@ -46,7 +46,7 @@ The regexp pattern in the format definition file might look massive, but it is m
 A CF log line can be something likes:
 > `"INFO","XNIO-1 task-2","05/18/2022","09:48:55","lucee.runtime.CFMLFactoryImpl","Reset 6 Unused PageContexts"`
 
-So the regexp to parse a CF log line would be likes:
+So the regexp to parse a CF log line could be likes:
 > `^"([A-Z]+)","([^\"]+)","(\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","([^\"]+)","([^\"]+)"$`
 
 The regexp will give us 5 groups, from the line example above they are:
@@ -59,9 +59,9 @@ The regexp will give us 5 groups, from the line example above they are:
 Now we can add our lnav fields into the regexp pattern. The lnav fields are written as `?<field>` and will be placed before the group regexp. The fields we used for the 5 groups matched by regexp are:
 1. `?<severity>` - Our custom field name for `level`, if you use a custom name then you must define it in the `level-field` item (see the section "Items" below)
 2. `?<thread_id>` - Our custom field name
-3. `?<timestamp>` - This is the field lnav used to parse date & time, you must use this name exactly
+3. `?<timestamp>` - This is the field name lnav used to parse date & time, you must use this name exactly
 4. `?<application>` - Our custom field name
-5. `?<body>` - Our custom field name (most formats use `body`, so we keep it this way)
+5. `?<body>` - Our custom field name (most people use `body`, so we keep it this way)
 
 So the final regexp pattern for lnav will be:
 > `^"(?<severity>[A-Z]+)","(?<thread_id>[^"]+)","(?<timestamp>\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","(?<application>[^"]+)","(?<body>[^"]+)"$`
