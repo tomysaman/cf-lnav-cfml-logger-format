@@ -17,7 +17,7 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
 - `ctrl + w` to toggle word-wrap
 - `p` to show log line parsing result (display the log line into items so they are easier to read)
 - `shift` + `p` to format the log content for better display or printing (for example if you have json or xml in log, it will format them with proper indention)
-- Navigate through log base on time period: `1`=10 mins, `2`=20 mins, .., `6`=60 mins, `d`=24hrs
+- Navigate through log entries base on time period: `1`=10 mins, `2`=20 mins, .., `6`=60 mins, `d`=24hrs
 - `i` to show histogram
 - `m` to bookmark the line, and then use `u` to go through bookmarks
 - `/` to start searching with regexp, then use `n` to go through search result line
@@ -25,12 +25,12 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
   - `:filter-in` and `:filter-out` to filter the log content
   - `:comment` to comment on a line, `:clear-comment` to remove
   - `:tag` to tag a line, `:un-tag` to remove, `:delete-tags` to remove tag(s)
-  - `:save-session` to save the current stage/config to a named session, and use `:load-session` to load and apply it
+  - `:save-session` to save the current stage/config to a named session, and use `:load-session` to load it back
 - lnav will use a session to remember your commands such filter-in/out and markers. You can use `ctrl + r` to reset the session
-- `;` to run SQL query on the log data. Do a `select * from cflog` to see what column names we can use for query, some of them are:
+- `;` to run SQL query on the log data. Do a `select * from cflog` to see what column names you can use for query, some of them are:
   - `log_time`, `log_level`, `log_mark`, `log_comment`, `log_tag`
 - Use `tab` to go into filter panel (use `q` to exist the panel), and while in the filter panel:
-  - `i` to add a filter-in, `o` to add a filter-out, `t` to flip your filter (filter IN <-> filter OUT), `spacebar` to enable/disable the filter
+  - `i` to add a filter-in, `o` to add a filter-out, `t` to flip your filter (e.g. filter IN becomes filter OUT and vice versa), `spacebar` to enable/disable the filter
 - If the views contains multiple files, use `f` to go to next file
 - Change theme (default themes are: default, eldar, grayscale, monocai, night-owl, solarized-dark, and solarized-light)
   - `:config /ui/theme/ <theme_name>`
@@ -41,7 +41,7 @@ If you want to write your own log format file, see [lnav log formats docs](https
 
 ### Crafting the regexp pattern
 
-The regexp pattern in the format definition file might look massive, but it is mostly due to we need to escape all the double quotes from CF log files and the regexp character classes (such as `\d`) within json. Below is an explanation on how the one in this repo is constructed.
+The regexp pattern in the format definition file might look massive, but it is mostly due to we need to escape all the double quotes used in a CF log file as well as the regexp character classes (such as `\d`). Below is an explanation on how the one in this repo is constructed.
 
 A CF log line can be something likes:
 > `"INFO","XNIO-1 task-2","05/18/2022","09:48:55","lucee.runtime.CFMLFactoryImpl","Reset 6 Unused PageContexts"`
@@ -57,11 +57,11 @@ The regexp will give us 5 groups, from the line example above they are:
 5. Reset 6 Unused PageContexts
 
 Now we can add our lnav fields into the regexp pattern. The lnav fields are written as `?<field>` and will be placed before the group regexp. The fields we used for the 5 groups matched by regexp are:
-1. `?<severity>` - Our custom field name for `level`, if you use a custom name then you must define it in the `level-field` item (see the section "Items" below)
+1. `?<severity>` - Our custom field name for `level`. Note that if you use a custom name then you must define it in the `level-field` item (see the section "Items" below)
 2. `?<thread_id>` - Our custom field name
 3. `?<timestamp>` - This is the field name lnav used to parse date & time, you must use this name exactly
 4. `?<application>` - Our custom field name
-5. `?<body>` - Our custom field name (most people use `body`, so we keep it this way)
+5. `?<body>` - Custom field name for log message (most people use `body`, so we keep it this way)
 
 So the final regexp pattern for lnav will be:
 > `^"(?<severity>[A-Z]+)","(?<thread_id>[^"]+)","(?<timestamp>\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","(?<application>[^"]+)","(?<body>[^"]+)"$`
@@ -84,7 +84,7 @@ Note: for the `?<timestamp>` field, the matched value contains date & time value
 - `sample`
   - A log line example. If lnav have trouble parsing this sample then it won't load the log files and will throw an error telling you what went wrong.
 
-### See what other format files are written
+### Examples of other log format files
 
 - https://github.com/hagfelsh/lnav_formats.git
 - https://github.com/PaulWay/lnav-formats.git
