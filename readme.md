@@ -2,7 +2,7 @@
 
 [lnav](https://lnav.org/) is a wonderful log file viewer in terminal for Mac and Linux. This repo provides a CFML log format definition file for lnav so that you can use lnav properly to view CF & Lucee log files.
 
-To use, download the `cflog.json` definition file from the `lnav-format` folder then install it with lnav with the following command:
+To use, download the `cflog.json` definition file from the `lnav-format` folder then install it with lnav using the following command:
 > `lnav -i cflog.json`
 
 # lnav
