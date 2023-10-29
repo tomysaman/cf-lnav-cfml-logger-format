@@ -31,7 +31,7 @@ lnav is powerful. To take advantage of its full features, refer to the documenta
   - `log_time`, `log_level`, `log_mark`, `log_comment`, `log_tag`
 - Use `tab` to go into filter panel (use `q` to exist the panel), and while in the filter panel:
   - `i` to add a filter-in, `o` to add a filter-out, `t` to flip your filter (e.g. filter IN becomes filter OUT and vice versa), `spacebar` to enable/disable the filter
-- If the views contains multiple files, use `f` to go to next file
+- If the view contains multiple files, use `f` to go to next file
 - Change theme (default themes are: default, eldar, grayscale, monocai, night-owl, solarized-dark, and solarized-light)
   - `:config /ui/theme/ <theme_name>`
 
@@ -57,7 +57,7 @@ The regexp will give us 5 groups, from the line example above they are:
 5. Reset 6 Unused PageContexts
 
 Now we can add our lnav fields into the regexp pattern. The lnav fields are written as `?<field>` and will be placed before the group regexp. The fields we used for the 5 groups matched by regexp are:
-1. `?<severity>` - Our custom field name for `level`. Note that if you use a custom name then you must define it in the `level-field` item (see the section "Items" below)
+1. `?<severity>` - Our custom field name for `level`. Note that if you use a custom name then you must define it in the `level-field` item (see the section "Other items" below)
 2. `?<thread_id>` - Our custom field name
 3. `?<timestamp>` - This is the field name lnav used to parse date & time, you must use this name exactly
 4. `?<application>` - Our custom field name
@@ -69,7 +69,7 @@ So the final regexp pattern for lnav will be:
 And to use that pattern string in a json file you need to escape double quotes and slashes, hence the final pattern string will be:
 > `^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\"]+)\"$`
 
-Note: for the `?<timestamp>` field, the matched value contains date & time value in the format likes `dd/mm/yyyy","hh:mm:ss` (notice the double quotes and comma between the date & time value), so in the `timestamp-format` item (see the section "Items" below) we can tell lnav how to properly parse the date and time out of this string as `%m/%d/%Y\",\"%H:%M:%S`
+Note: for the `?<timestamp>` field, the matched value contains date & time value in the format likes `dd/mm/yyyy","hh:mm:ss` (notice the double quotes and comma between the date & time value), so in the `timestamp-format` item (see the section "Other items" below) we can tell lnav how to properly parse the date and time out of this string as `%m/%d/%Y\",\"%H:%M:%S`
 
 ### Other items
 
