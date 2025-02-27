@@ -6,7 +6,7 @@
 		"url" : "",
 		"regex" : {
 			"cflog" : {
-				"pattern" : "^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\"]+)\"$"
+				"pattern" : "^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\\`]+)\"$"
 			}
 		},
 		"level-field" : "severity",
