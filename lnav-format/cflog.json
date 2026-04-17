@@ -6,7 +6,7 @@
 		"url" : "",
 		"regex" : {
 			"cflog" : {
-				"pattern" : "^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\\`]+)\"$"
+				"pattern" : "^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>(?:[^\"]|\"\")*)\"$"
 			}
 		},
 		"level-field" : "severity",
@@ -30,6 +30,9 @@
 		"sample" : [
 			{
 				"line" : "\"INFO\",\"XNIO-1 task-2\",\"05/18/2022\",\"09:48:55\",\"lucee.runtime.CFMLFactoryImpl\",\"Reset 6 Unused PageContexts\""
+			},
+			{
+				"line" : "\"INFO\",\"XNIO-1 task-3\",\"03/24/2026\",\"10:50:06\",\"admit-api\",\"{\"\"Message\"\":\"\"Component has no function\"\",\"\"ErrorCode\"\":\"\"0\"\"}\""
 			}
 		]
 	}

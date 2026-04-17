@@ -67,7 +67,7 @@ So the final regexp pattern for lnav will be:
 > `^"(?<severity>[A-Z]+)","(?<thread_id>[^"]+)","(?<timestamp>\d{2}\/\d{2}\/\d{4}","\d{2}:\d{2}:\d{2})","(?<application>[^"]+)","(?<body>[^"]+)"$`
 
 And to use that pattern string in a json file you need to escape double quotes and slashes, hence the final pattern string will be:
-> `^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>[^\"]+)\"$`
+> `^\"(?<severity>[A-Z]+)\",\"(?<thread_id>[^\"]+)\",\"(?<timestamp>\\d{2}\/\\d{2}\/\\d{4}\",\"\\d{2}:\\d{2}:\\d{2})\",\"(?<application>[^\"]+)\",\"(?<body>(?:[^\"]|\"\")*)\"$`
 
 Note: for the `?<timestamp>` field, the matched value contains date & time value in the format likes `dd/mm/yyyy","hh:mm:ss` (notice the double quotes and comma between the date & time value), so in the `timestamp-format` item (see the section "Other items" below) we can tell lnav how to properly parse the date and time out of this string as `%m/%d/%Y\",\"%H:%M:%S`
 
@@ -90,8 +90,3 @@ Note: for the `?<timestamp>` field, the matched value contains date & time value
 - https://github.com/PaulWay/lnav-formats.git
 - https://github.com/penntaylor/lnav-ruby-logger-format.git
 - https://github.com/aspiers/lnav-formats.gi
-
-# ToDo
-
-- Improve the log format definition regular express
-  - It currently cannot handel the log body message that contains double quote
